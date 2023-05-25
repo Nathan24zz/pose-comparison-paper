@@ -1,0 +1,24 @@
+% Ubah judul dan label berikut sesuai dengan yang diinginkan.
+\section{Pose Estimation}
+\label{sec:poseestimation}
+
+% Ubah paragraf-paragraf pada bagian ini sesuai dengan yang diinginkan.
+
+\subsection{Pose Estimation}
+\label{subsec:poseestimation}
+
+Pose estimation is a heavily explored area with applications in gaming, animation, action recognition, activity tracking, and augmented reality.
+In order to improve pose estimate outcomes, various approaches have been developed. These methods may generally be split into: single-person and multi-person approaches.
+The single-person approach is fundamentally a regression issue because it just determines the pose of a single person in an image, 
+the person's position and an implicit number of keypoints are already known. However, the multi-person approach tries to solve an unconstrained problem because we do not know 
+the positions and number of persons within the image, therefore the framework has to detect keypoints and assemble an unknown number of persons \citep{romeo}.
+
+\subsection{Human and Humanoid Robot Pose Estimation}
+\label{subsec:uhmanandrobotposeestimation}
+
+Pose estimation on humans can be divided into two techniques: 2D Pose Estimation and 3D Pose Estimation.
+2D pose estimation is a type of pose estimation that can estimate the locations of the body joints in 2D space relative to input data (i.e., image or video frame). 
+The location is represented in \emph{x, y} coordinates for each key point. On the other hand, 3D pose estimation transforms a 2D image into a 3D object by estimating an additional Z-dimension to the prediction.
+3D pose estimation enables us to predict the accurate spatial positioning of a represented person or thing.
+Humanoid robots and persons have similar shapes, which has both advantages and disadvantages. On the one hand, this allows us to start with approaches already in use for persons,
+but on the other, it makes it harder for us to distinguish between persons and humanoid robots \citep{amini2021}.
