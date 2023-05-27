@@ -2,27 +2,6 @@
 \section{System Design}
 \label{sec:systemdesign}
 
-% % Contoh input beberapa gambar pada halaman.
-% \begin{figure*}
-%   \centering
-%   \subfloat[Hasil A]{\includegraphics[width=.4\textwidth]{example-image-a}
-%     \label{fig:hasila}}
-%   \hfil
-%   \subfloat[Hasil B]{\includegraphics[width=.4\textwidth]{example-image-b}
-%     \label{fig:hasilb}}
-%   \caption{Contoh input beberapa gambar.}
-%   \label{fig:hasil}
-% \end{figure*}
-
-% \lipsum[16-18]
-
-% % Contoh input potongan kode dari file.
-% \lstinputlisting[
-%   language=Python,
-%   caption={Program perhitungan bilangan prima.},
-%   label={lst:bilanganprima}
-% ]{program/bilangan-prima.py}
-
 Our main program uses websites to interact with users because of its flexibility on any platform, the website view can be seen in Figure \ref{fig:websiteview}. So there is a Javascript client and a Python Server that communicate via \emph{socketio}.
 The main program is divided into two modes, RECORD mode and PLAY mode. In RECORD mode, a human as a trainer gives a series of movements and will be followed by a humanoid robot, as well as robot save these movements to use in PLAY mode later.
 Meanwhile, in the PLAY mode, the robot acts as a trainer and performs a series of movements according to the movements previously stored in RECORD mode. Human will follow the robot's movement while the robot is also saving both human and robot images.
