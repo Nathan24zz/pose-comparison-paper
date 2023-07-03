@@ -58,11 +58,20 @@ we also can know that training loss and validation loss of Keypoint RCNN decreas
 The training loss steadily decreases and eventually stabilizes, this indicates the model has converged and training does not need to be continued.
 Like training loss, initially, validation loss is relatively high since the model has not been exposed to the validation data. As the model learns from the training data, the validation loss should decrease,
   indicating improved generalization performance. The validation loss steadily decreases and stabilizes in the end.
+However, Figure \ref{fig:yolo-training-graphics} indicates that overfitting occurs when we train YOLO-pose. This is shown by a graph of one of validation loss (bounding box loss) that increase, not decrease gradually.
+This is because normally YOLO requires large amounts of data, but in this study, we only had a small dataset for training. For example, when training keypoint detection for human with COCO Dataset 2017,
+  the train set consists of 57K images, whereas the validation and test set consists of 5K and 20K images respectively \citep{maji2022yolopose}.
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.48\textwidth]{gambar/loss-rcnn.png}
   \caption{Keypoint RCNN Training Graphics.}
   \label{fig:rcnn-training-graphics}
+\end{figure}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.48\textwidth]{gambar/loss-yolo.jpg}
+  \caption{YOLO-pose Training Graphics.}
+  \label{fig:yolo-training-graphics}
 \end{figure}
 
 For the evaluation metrics, NimbRo's Model and Keypoint RCNN use the Object Keypoint Similarity (OKS) with a per-keypoint constant equal to 0.4 for all keypoints.
