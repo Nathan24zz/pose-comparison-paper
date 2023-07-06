@@ -23,13 +23,7 @@ All tests were conducted using the Ichiro robot in the \emph{Robot Cerdas} Labor
 \subsection{New Dataset Statistics}
 \label{subsec:new-dataset-statistics}
 
-This new dataset is a merge of the HumanoidRobotPose dataset and Ichiro's pose dataset. Figure \ref{fig:nimbro-statistics} shows the statistics for the HumanoidRobotPose dataset \citep{amini2021} and Figure \ref{fig:new-dataset-statistics} shows the statistics for the new dataset.
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=0.39\textwidth]{gambar/old_dataset.png}
-  \caption{HumanoidRobotPose Statistics.}
-  \label{fig:nimbro-statistics}
-\end{figure}
+Figure \ref{fig:new-dataset-statistics} shows the statistics for the new dataset.
 The diversity of the number of robot instances per image is illustrated on the left, and the scale proportions of robot instances is shown on the right. The definition of small, medium, and large scale is identical to the COCO dataset.
 Most of the additions are one robot instance (from approximately 850 to 1700) with large scale, i.e., (segment area \textgreater 96\textsuperscript{2}). 
 This was based on a system requirement that only need pose estimation for one robot and since the distance between the camera and the robot is not that far, the robot object in the image is mainly on a large scale.
@@ -43,36 +37,6 @@ This was based on a system requirement that only need pose estimation for one ro
 
 \subsection{Robot's Model Training Result}
 \label{subsec:robotmodeltrainingresult}
-
-% This section shows training graphics, evaluation metrics about three models, and testing we perform such as visualizing detection results and inference time.
-% Figure \ref{fig:nimbro-training-graphics} and \ref{fig:rcnn-training-graphics} show graphics for training loss (on the left) and validation loss (on the right).
-% \begin{figure}[ht]
-%   \centering
-%   \includegraphics[width=0.48\textwidth]{gambar/loss-nimbro.png}
-%   \caption{Nimbro Training Graphics.}
-%   \label{fig:nimbro-training-graphics}
-% \end{figure}
-% Training loss and validation loss of NimbRo's model decreased from 0.02 to 0.0006 and 0.0065 to 0.002 respectively. From Figure \ref{fig:rcnn-training-graphics},
-% we also can know that training loss and validation loss of Keypoint RCNN decreased from 6.991 to 2.634 and 5.926 to 3.439 respectively. Initially, the training loss is high as the model's parameters are randomly initialized,
-%   and the model has not yet learned to make accurate predictions. As the training progresses, the loss generally decreases, indicating that the model is learning and improving its performance.
-% The training loss steadily decreases and eventually stabilizes, this indicates the model has converged and training does not need to be continued.
-% Like training loss, initially, validation loss is relatively high since the model has not been exposed to the validation data. As the model learns from the training data, the validation loss should decrease,
-%   indicating improved generalization performance. The validation loss steadily decreases and stabilizes in the end.
-% However, Figure \ref{fig:yolo-training-graphics} indicates that overfitting occurs when we train YOLO-pose. This is shown by a graph of one of validation loss (bounding box loss) that increase, not decrease gradually.
-% This is because normally YOLO requires large amounts of data, but in this study, we only had a small dataset for training. For example, when training keypoint detection for human with COCO Dataset 2017,
-%   the train set consists of 57K images, whereas the validation and test set consists of 5K and 20K images respectively \citep{maji2022yolopose}.
-% \begin{figure}[ht]
-%   \centering
-%   \includegraphics[width=0.48\textwidth]{gambar/loss-rcnn.png}
-%   \caption{Keypoint RCNN Training Graphics.}
-%   \label{fig:rcnn-training-graphics}
-% \end{figure}
-% \begin{figure}[ht]
-%   \centering
-%   \includegraphics[width=0.48\textwidth]{gambar/loss-yolo.jpg}
-%   \caption{YOLO-pose Training Graphics.}
-%   \label{fig:yolo-training-graphics}
-% \end{figure}
 
 This section shows evaluation metrics about three models, visualizing the detection results, and inference time.
 When training YOLO-pose, it still overfits, which is likely because YOLO requires large amounts of data, but in this study, we only had a small dataset for training.
@@ -142,23 +106,6 @@ Based on study held by \citet{bazarevsky2020} that compares three different mode
 BlazePose shows slightly worse performance than the OpenPose model on the AR dataset but BlazePose Full outperforms OpenPose on Yoga/Fitness use cases.
 Note that, in this study, we use BlazePose Full because by default the value of \verb|model_complexity| is 1 in MediaPipe Solution APIs.
 Since in this study, we just need single-person pose detection, MediaPipe should be the best and also a reliable choice.
-% \begin{table}
-% \caption{Inference Time Model Human.}
-% \centering
-%     \begin{tabular}{{|c|c|c|}}
-%     \hline
-%     \rowcolor{lightgray}
-%     \textbf{Model}    & \textbf{Inference Time (s)} \\
-%     \hline
-%     Mediapipe   & 0.15 - 0.2\\
-%     \hline
-%     OpenPose    & 0.2\\
-%     \hline
-%     YOLO-Pose   & 0.7 - 0.75\\
-%     \hline
-%     \end{tabular}
-%     \label{tb:inference-human}\\
-% \end{table}
 
 \subsection{Comparing the Suitability Between Humanoid Robot Pose and Human Pose}
 \label{subsec:comparingsuitability}
