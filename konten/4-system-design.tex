@@ -47,7 +47,7 @@ Meanwhile, in the PLAY mode, the robot acts as a trainer and performs a series o
 To be able to move a robot's upper body like human movement, we need to obtain the angle between 2 keypoints using the \emph{arc tangent} function with the input \emph{\{x,y\}} coordinate as shown in Equation \ref{eq:arctan}.
 \begin{equation}
   \label{eq:arctan}
-  angle = \arctan \left(\frac{Y_2 - Y_1}{X_2 - X_1}\right)
+  \theta (x, y) = \arctan \left(\frac{y_2 - y_1}{x_2 - x_1}\right)
 \end{equation}
 
 There are four angles we want to retrieve which are the angles from the shoulder to the elbow (right and left) and also the elbow to wrist (right and left) in order to robot can mimic upper body human movement.
@@ -185,6 +185,7 @@ while another may have been in the distance. In order to get an accurate outcome
 After choosing the keypoints, we create a new bounding box which tightly covers the object in the image.
 This solves the problem of the subject appearing in different parts of the picture.
 We further normalized the resulting keypoints coordinates by performing L2 normalization in order to transform it into a unit vector.
+L2 normalization calculates the distance of the vector coordinate from the origin of the vector space.
 This means we are ignoring the size of the picture, but keeping in account the direction of the vector, created by the pose inside of that image.
 
 
@@ -196,12 +197,12 @@ The cosine similarity ranges from -1 to 1. The cosine distance, on the other han
 Using Equation \ref{eq:euclideandistance} scales the values to the range of 0 to 2, making it easier to interpret the results. A larger value implies a greater dissimilarity between poses. In that equation, Fxy and Gxy are two pose vectors to be compared after L2 normalization. Moreover, Fxy and Gxy contain only x and y positions for each of the 6 keypoints, it does not include confidence scores.
 \begin{equation} 
   \label{eq:cosinesimilarity}
-  cosineSimilarity(x,y) = \frac{x \cdot y}{|x||y|}
+  \cos(x,y) = \frac{x \cdot y}{\|x\| \|y\|}
 \end{equation}
 
 \begin{equation}
   \label{eq:euclideandistance}
-  D(F_{xy}, G_{xy}) = \sqrt{2 * (1 - cosineSimilarity(F_{xy}, G_{xy}))}
+  d(F_{xy}, G_{xy}) = \sqrt{2 (1 - \cos(F_{xy}, G_{xy}))}
 \end{equation}
 
 

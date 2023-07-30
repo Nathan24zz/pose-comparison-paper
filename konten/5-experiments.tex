@@ -3,6 +3,40 @@
 
 This section discusses and shows the results from our test and analysis on training humanoid robot model, human model comparison, and also compares their suitability.
 All tests were conducted using the Ichiro robot in the \emph{Robot Cerdas} Laboratory with computer specifications as can be seen in Table \ref{tb:computerspecichiro}.
+
+\begin{table*}[t]
+\caption{Results on the test set.}
+\centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|} 
+    \hline
+    \rowcolor{lightgray} \textbf{Model} & \textbf{AP} & \textbf{AP\textsubscript{50}} & \textbf{AP\textsubscript{75}} & \textbf{AP\textsubscript{M}} & \textbf{AP\textsubscript{L}} & \textbf{AR} & \textbf{AR\textsubscript{50}} & \textbf{AR\textsubscript{75}} & \textbf{AR\textsubscript{M}} & \textbf{AR\textsubscript{L}} \\ 
+    \hline
+    NimbRo's Model        & 0.828       & 0.879                         & 0.840                         & \textbf{0.886}                         & 0.864                        & 0.836       & 0.884                         & 0.849                         & 0.895                        & 0.872 \\
+    \hline
+    RCNN Keypoint           & \textbf{0.879}       & \textbf{0.936}                         & \textbf{0.904}                         & 0.859                        & \textbf{0.937}                       & \textbf{0.925}       & \textbf{0.973}                         & \textbf{0.944}                         & \textbf{0.936}                        & \textbf{0.955} \\
+    \hline
+    YOLO-pose           & 0.849       & 0.838                         & -                             & -                            & -                            & 0.814       & -                             & -                             & -                            & - \\
+    \hline
+    \end{tabular}
+    \label{tb:result-on-test-set}\\
+\end{table*}
+
+\begin{table*}[t]
+\caption{Robot Model Comparison Detection Results.}
+\centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \rowcolor{lightgray}
+    \textbf{NimbRo}    & \textbf{RCNN} & \textbf{YOLO-pose}\\
+    \hline
+    \includegraphics[scale=0.6]{gambar/nimbro-1.png} & \includegraphics[scale=0.33]{gambar/rcnn-1.png} & \includegraphics[scale=0.46]{gambar/yolo-1.png} \\
+    \hline
+    \includegraphics[scale=0.6]{gambar/nimbro-3.png} & \includegraphics[scale=0.34]{gambar/rcnn-3.png} & \includegraphics[scale=0.47]{gambar/yolo-3.png} \\
+    \hline
+    \end{tabular}
+    \label{tb:robotmodelcomparisondetectionresults}\\
+\end{table*}
+
 \begin{table}
 \caption{Computer specification on Ichiro robot.}
 \centering
@@ -23,13 +57,13 @@ All tests were conducted using the Ichiro robot in the \emph{Robot Cerdas} Labor
 \subsection{New Dataset Statistics}
 \label{subsec:new-dataset-statistics}
 
-Figure \ref{fig:new-dataset-statistics} shows the statistics for the new dataset.
+This new dataset is a combination of the HumanoidRobotPose dataset \citep{amini2021} and our own dataset. Figure \ref{fig:new-dataset-statistics} shows the statistics for the new dataset.
 The diversity of the number of robot instances per image is illustrated on the left, and the scale proportions of robot instances is shown on the right. The definition of small, medium, and large scale is identical to the COCO dataset.
 Most of the additions are one robot instance (from approximately 850 to 1700) with large scale, i.e., (segment area \textgreater 96\textsuperscript{2}). 
 This was based on a system requirement that only need pose estimation for one robot and since the distance between the camera and the robot is not that far, the robot object in the image is mainly on a large scale.
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.4\textwidth]{gambar/new_dataset.png}
+  \includegraphics[width=0.45\textwidth]{gambar/new_dataset.png}
   \caption{New Dataset Statistics.}
   \label{fig:new-dataset-statistics}
 \end{figure}
@@ -65,40 +99,6 @@ However, since the in PLAY mode, we can do the pose estimation for both human an
       \label{tb:inference-robot}\\
   \end{table}
 
-\begin{table*}
-  \caption{Results on the test set.}
-  \centering
-      \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|} 
-      \hline
-      \rowcolor{lightgray} \textbf{Model} & \textbf{AP} & \textbf{AP\textsubscript{50}} & \textbf{AP\textsubscript{75}} & \textbf{AP\textsubscript{M}} & \textbf{AP\textsubscript{L}} & \textbf{AR} & \textbf{AR\textsubscript{50}} & \textbf{AR\textsubscript{75}} & \textbf{AR\textsubscript{M}} & \textbf{AR\textsubscript{L}} \\ 
-      \hline
-      NimbRo's Model        & 0.828       & 0.879                         & 0.840                         & \textbf{0.886}                         & 0.864                        & 0.836       & 0.884                         & 0.849                         & 0.895                        & 0.872 \\
-      \hline
-      RCNN Keypoint           & \textbf{0.879}       & \textbf{0.936}                         & \textbf{0.904}                         & 0.859                        & \textbf{0.937}                       & \textbf{0.925}       & \textbf{0.973}                         & \textbf{0.944}                         & \textbf{0.936}                        & \textbf{0.955} \\
-      \hline
-      YOLO-pose           & 0.849       & 0.838                         & -                             & -                            & -                            & 0.814       & -                             & -                             & -                            & - \\
-      \hline
-      \end{tabular}
-      \label{tb:result-on-test-set}\\
-  \end{table*}
-
-\begin{table*}
-\caption{Robot Model Comparison Detection Results.}
-\centering
-    \begin{tabular}{|c|c|c|}
-    \hline
-    \rowcolor{lightgray}
-    \textbf{NimbRo}    & \textbf{RCNN} & \textbf{YOLO-pose}\\
-    \hline
-    \includegraphics[scale=0.62]{gambar/nimbro-1.png} & \includegraphics[scale=0.35]{gambar/rcnn-1.png} & \includegraphics[scale=0.48]{gambar/yolo-1.png} \\
-    \hline
-    \includegraphics[scale=0.62]{gambar/nimbro-3.png} & \includegraphics[scale=0.36]{gambar/rcnn-3.png} & \includegraphics[scale=0.49]{gambar/yolo-3.png} \\
-    \hline
-    \end{tabular}
-    \label{tb:robotmodelcomparisondetectionresults}\\
-\end{table*}
-
-
 \subsection{Human's Model Comparison}
 \label{subsec:humanmodelcomparison}
 
@@ -117,10 +117,10 @@ This indicates that the system can provide an accurate assessment between the po
 
 \begin{figure*}
 \centering
-\subfloat[Human Image A]{\includegraphics[width=.28\textwidth]{gambar/human_10_result.jpg}
+\subfloat[Human Image A]{\includegraphics[width=.22\textwidth]{gambar/human_10_result.jpg}
     \label{fig:humanimagea}}
 \hfil
-\subfloat[Robot Image A]{\includegraphics[width=.28\textwidth]{gambar/robot_6_result.jpg}
+\subfloat[Robot Image A]{\includegraphics[width=.22\textwidth]{gambar/robot_6_result.jpg}
     \label{fig:robotimagea}}
 \caption{Comparing Humanoid Robot Pose and Human Pose.}
 \label{fig:comparinga}
@@ -128,10 +128,10 @@ This indicates that the system can provide an accurate assessment between the po
 
 \begin{figure*}
 \centering
-\subfloat[Human Image B]{\includegraphics[width=.28\textwidth]{gambar/human_6_result.jpg}
+\subfloat[Human Image B]{\includegraphics[width=.22\textwidth]{gambar/human_6_result.jpg}
     \label{fig:humanimageb}}
 \hfil
-\subfloat[Robot Image B]{\includegraphics[width=.28\textwidth]{gambar/robot_6_result.jpg}
+\subfloat[Robot Image B]{\includegraphics[width=.22\textwidth]{gambar/robot_6_result.jpg}
     \label{fig:robotimageb}}
 \caption{Comparing Humanoid Robot Pose and Human Pose.}
 \label{fig:comparingb}
